@@ -1,18 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
+﻿using GalaSoft.MvvmLight.Ioc;
+using System;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 
@@ -34,6 +25,18 @@ namespace TabTest.WinPhone
         public App()
         {
             this.InitializeComponent();
+
+            var nav = new GalaSoft.MvvmLight.Views.NavigationService();
+
+            // configure the service
+            nav.Configure(ViewModelLocator.MainKey, typeof(MainPage));
+            nav.Configure(ViewModelLocator.CropKey, typeof(CropsPage));
+            nav.Configure(ViewModelLocator.LivestockKey, typeof(LivestockPage));
+            nav.Configure(ViewModelLocator.ShedsKey, typeof(ShedsPage));
+
+            // register the service
+            SimpleIoc.Default.Register<GalaSoft.MvvmLight.Views.INavigationService>(() => nav);
+
             this.Suspending += this.OnSuspending;
         }
 
