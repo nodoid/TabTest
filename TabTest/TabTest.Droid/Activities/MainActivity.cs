@@ -2,13 +2,15 @@
 using Android.App;
 using Android.OS;
 using GalaSoft.MvvmLight.Views;
+using System.Collections.ObjectModel;
+using GalaSoft.MvvmLight.Helpers;
 
 namespace TabTest.Droid
 {
     [Activity(Label = "TabTest.Droid", MainLauncher = true, Icon = "@drawable/icon")]
     public class MainActivity : ActivityBase
     {
-        Fragment[] fragments;
+        ObservableCollection<Fragment> fragments = new ObservableCollection<Fragment>();
         public MainViewModel ViewModel => App.Locator.Main;
 
         protected override void OnCreate(Bundle bundle)
@@ -18,14 +20,10 @@ namespace TabTest.Droid
             SetContentView(Resource.Layout.Main);
 
             ActionBar.NavigationMode = ActionBarNavigationMode.Tabs;
-            //SetContentView(Resource.Layout.Main);
 
-            fragments = new Fragment[]
-                         {
-                             new TODFragment(),
-                             new ConditionsFragment(),
-                             new ResultsFragment()
-                         };
+            fragments.Add(new TODFragment());
+            fragments.Add(new ConditionsFragment());
+            fragments.Add(new ResultsFragment());
 
             AddTabToActionBar("Time", Resource.Drawable.crucifix_colour);
             AddTabToActionBar("Conditions", Resource.Drawable.weather_colour);
@@ -46,7 +44,7 @@ namespace TabTest.Droid
         {
             var tab = (ActionBar.Tab)sender;
 
-            Fragment frag = fragments[tab.Position];
+            var frag = fragments[tab.Position];
             tabEventArgs.FragmentTransaction.Replace(Resource.Id.frameLayout1, frag);
         }
     }

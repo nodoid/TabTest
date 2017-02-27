@@ -72,9 +72,9 @@
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Activities\Conditions.UI.cs" />
-    <Compile Include="Activities\LivestockActivity.UI.cs" />
     <Compile Include="Activities\ShedsActivity.UI.cs" />
     <Compile Include="Model\Events.cs" />
+    <Compile Include="Activities\LivestockActivity.UI.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

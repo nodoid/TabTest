@@ -8,7 +8,7 @@ namespace TabTest.Droid
 {
     public partial class ResultsFragment : Fragment
     {
-        View view;
+        static View view;
 
         public ShedsViewModel ViewModel => App.Locator.Sheds;
 

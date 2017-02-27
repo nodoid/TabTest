@@ -8,7 +8,7 @@ using GalaSoft.MvvmLight.Views;
 
 namespace TabTest.iOS
 {
-    public partial class LivestockViewController : ControllerBase
+    public partial class LivestockViewController : UIViewController
     {
         public LivestockViewController(IntPtr handle) : base(handle)
         {
