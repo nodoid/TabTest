@@ -8,5 +8,12 @@ namespace TabTest.Droid
 
         public TextView TxtView => textView ?? (textView = view.FindViewById<TextView>(Resource.Id.textView1));
         public ImageView ImgView => imageView ?? (imageView = view.FindViewById<ImageView>(Resource.Id.imageView1));
+
+        void KillViews()
+        {
+            textView = null;
+            imageView = null;
+        }
+
     }
 }

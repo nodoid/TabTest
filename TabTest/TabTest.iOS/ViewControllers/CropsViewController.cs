@@ -8,7 +8,7 @@ using GalaSoft.MvvmLight.Views;
 
 namespace TabTest.iOS
 {
-    public partial class CropsViewController : ControllerBase
+    public partial class CropsViewController : UIViewController
     {
         public CropsViewController(IntPtr handle) : base(handle)
         {

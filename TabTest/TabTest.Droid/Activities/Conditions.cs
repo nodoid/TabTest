@@ -19,12 +19,18 @@ namespace TabTest.Droid
             return view;
         }
 
+        public override void OnDestroyView()
+        {
+            base.OnDestroyView();
+            KillViews();
+        }
+
         void CreateBindings()
         {
             this.SetBinding(
                 () => ViewModel.Text,
                 () => TxtView.Text,
-                BindingMode.Default);
+                BindingMode.TwoWay);
 
             ImgView.SetImageResource(GetImageFromFilename(ViewModel.ImageFilename));
         }

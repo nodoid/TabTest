@@ -8,7 +8,7 @@ using GalaSoft.MvvmLight.Views;
 
 namespace TabTest.iOS
 {
-    public partial class ShedsViewController : ControllerBase
+    public partial class ShedsViewController : UIViewController
     {
         public ShedsViewController(IntPtr handle) : base(handle)
         {

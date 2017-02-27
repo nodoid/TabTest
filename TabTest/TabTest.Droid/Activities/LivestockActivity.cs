@@ -2,7 +2,6 @@ using Android.App;
 using Android.OS;
 using Android.Views;
 using GalaSoft.MvvmLight.Helpers;
-using Android.Graphics.Drawables;
 
 namespace TabTest.Droid
 {
@@ -14,9 +13,16 @@ namespace TabTest.Droid
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
+            var _ = base.OnCreateView(inflater, container, savedInstanceState);
             view = inflater.Inflate(Resource.Layout.Livestock, null);
             CreateBindings();
             return view;
+        }
+
+        public override void OnDestroyView()
+        {
+            base.OnDestroyView();
+            KillViews();
         }
 
         void CreateBindings()

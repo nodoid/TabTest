@@ -1,4 +1,5 @@
 
+using System.Threading.Tasks;
 using Android.App;
 using Android.OS;
 using Android.Views;
@@ -19,12 +20,18 @@ namespace TabTest.Droid
             return view;
         }
 
+        public override void OnDestroyView()
+        {
+            base.OnDestroyView();
+            KillViews();
+        }
+
         void CreateBindings()
         {
             this.SetBinding(
-                () => ViewModel.Text,
-                () => TxtView.Text,
-                BindingMode.Default);
+                    () => ViewModel.Text,
+                    () => TxtView.Text,
+                    BindingMode.Default);
 
             ImgView.SetImageResource(GetImageFromFilename(ViewModel.ImageFilename));
         }

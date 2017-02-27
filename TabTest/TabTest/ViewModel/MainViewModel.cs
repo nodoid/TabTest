@@ -1,44 +1,53 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using System;
+using GalaSoft.MvvmLight.Views;
 
 namespace TabTest
 {
-    /// <summary>
-    /// This class contains properties that the main View can data bind to.
-    /// <para>
-    /// Use the <strong>mvvminpc</strong> snippet to add bindable properties to this ViewModel.
-    /// </para>
-    /// <para>
-    /// You can also use Blend to data bind with the tool's support.
-    /// </para>
-    /// <para>
-    /// See http://www.galasoft.ch/mvvm
-    /// </para>
-    /// </summary>
     public class MainViewModel : ViewModelBase
     {
-        /// <summary>
-        /// Initializes a new instance of the MainViewModel class.
-        /// </summary>
-        public MainViewModel()
+        INavigationService navService;
+
+        public MainViewModel(INavigationService nav)
         {
-            ////if (IsInDesignMode)
-            ////{
-            ////    // Code runs in Blend --> create design time data.
-            ////}
-            ////else
-            ////{
-            ////    // Code runs "for real"
-            ////}
+            navService = nav;
         }
 
-        RelayCommand moveView;
-        public RelayCommand<EventArgs> MoveView
+        RelayCommand timeMove, conditionsMove, resultMove;
+        public RelayCommand TimeMove
         {
             get
             {
-                return null;
+                return timeMove ??
+                    (timeMove = new RelayCommand(
+                    () =>
+                    {
+                        navService.NavigateTo(ViewModelLocator.CropKey);
+                    }));
+            }
+        }
+        public RelayCommand ConditionsMove
+        {
+            get
+            {
+                return conditionsMove ??
+                    (conditionsMove = new RelayCommand(
+                    () =>
+                    {
+                        navService.NavigateTo(ViewModelLocator.LivestockKey);
+                    }));
+            }
+        }
+        public RelayCommand ResultsMove
+        {
+            get
+            {
+                return resultMove ??
+                    (resultMove = new RelayCommand(
+                    () =>
+                    {
+                        navService.NavigateTo(ViewModelLocator.ShedsKey);
+                    }));
             }
         }
     }
